@@ -29,7 +29,7 @@ dependencies {
     implementation "io.micronaut.security:micronaut-security-jwt"
     //end::securitydependency[]
 
-    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+    runtimeOnly "ch.qos.logback:logback-classic"
     testCompileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation("org.spockframework:spock-core") {
