@@ -27,6 +27,7 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
 
     //tag::securitydependency[]
+    compileOnly "io.micronaut.security:micronaut-security-annotations"
     implementation "io.micronaut.security:micronaut-security-jwt"
     //end::securitydependency[]
 
