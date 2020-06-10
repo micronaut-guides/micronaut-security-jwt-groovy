@@ -26,7 +26,7 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
 
     //tag::securitydependency[]
-    implementation "io.micronaut:micronaut-security-jwt"
+    implementation "io.micronaut.security:micronaut-security-jwt"
     //end::securitydependency[]
 
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
