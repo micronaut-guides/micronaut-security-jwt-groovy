@@ -6,7 +6,6 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.client.exceptions.HttpClientResponseException
-import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.security.authentication.UsernamePasswordCredentials
 import io.micronaut.security.token.jwt.render.BearerAccessRefreshToken
 import io.micronaut.test.annotation.MicronautTest
@@ -16,9 +15,6 @@ import javax.inject.Inject
 
 @MicronautTest
 class DeclarativeHttpClientWithJwtSpec extends Specification {
-
-    @Inject
-    EmbeddedServer embeddedServer
 
     @Inject
     @Client("/")
@@ -41,6 +37,7 @@ class DeclarativeHttpClientWithJwtSpec extends Specification {
         HttpResponse<BearerAccessRefreshToken> rsp = client.toBlocking().exchange(request, BearerAccessRefreshToken) // <3>
 
         then: 'the endpoint can be accessed'
+        noExceptionThrown()
         rsp.status == HttpStatus.OK
         rsp.body().accessToken
 
@@ -50,6 +47,7 @@ class DeclarativeHttpClientWithJwtSpec extends Specification {
         String msg = appClient.home(authorizationValue) // <4>
 
         then:
-        msg == 'sherlock' // <5>
+        noExceptionThrown()
+        msg == 'sherlock'
     }
 }

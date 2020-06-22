@@ -1,9 +1,9 @@
 Create a file named `HomeController` which resolves the base URL `/`:
 
 [source,groovy]
-.src/main/groovy/example/micronaut/controllers/HomeController.groovy
+.src/main/groovy/example/micronaut/HomeController.groovy
 ----
-include::{sourceDir}/src/main/groovy/example/micronaut/controllers/HomeController.groovy[]
+include::{sourceDir}/src/main/groovy/example/micronaut/HomeController.groovy[]
 ----
 
 <1> Annotate with `io.micronaut.security.Secured` to configure secured access. The `isAuthenticated()` expression will allow access only to authenticated users.

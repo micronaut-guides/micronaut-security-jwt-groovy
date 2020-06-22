@@ -1,19 +1,11 @@
-micronaut:
-  application:
-    name: complete
----
 #tag::security[]
 micronaut:
   security:
-    endpoints:
-      login:
-        enabled: true # <1>
-      oauth:
-        enabled: true # <2>
+    authentication: bearer  # <1>
     token:
       jwt:
         signatures:
           secret:
-            generator: # <3>
-              secret: pleaseChangeThisSecretForANewOne # <4>
+            generator: # <2>
+              secret: pleaseChangeThisSecretForANewOne # <3>
 #end::security[]

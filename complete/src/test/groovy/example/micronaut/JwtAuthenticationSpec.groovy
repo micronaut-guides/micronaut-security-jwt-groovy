@@ -21,11 +21,8 @@ import javax.inject.Inject
 class JwtAuthenticationSpec extends Specification {
 
     @Inject
-    EmbeddedServer embeddedServer // <2>
-
-    @Inject
     @Client("/")
-    RxHttpClient client // <3>
+    RxHttpClient client // <2>
 
     def "Verify JWT authentication works"() {
         when: 'Accessing a secured URL without authenticating'
@@ -41,12 +38,11 @@ class JwtAuthenticationSpec extends Specification {
         HttpResponse<BearerAccessRefreshToken> rsp = client.toBlocking().exchange(request, BearerAccessRefreshToken) // <6>
 
         then: 'the endpoint can be accessed'
+        noExceptionThrown()
         rsp.status == HttpStatus.OK
         rsp.body().username == 'sherlock'
         rsp.body().accessToken
         JWTParser.parse(rsp.body().accessToken) instanceof SignedJWT
-        rsp.body().refreshToken
-        JWTParser.parse(rsp.body().refreshToken) instanceof SignedJWT
 
         when:
         String accessToken = rsp.body().accessToken
@@ -54,6 +50,7 @@ class JwtAuthenticationSpec extends Specification {
         HttpResponse<String> response = client.toBlocking().exchange(requestWithAuthorization, String)
 
         then:
+        noExceptionThrown()
         response.status == HttpStatus.OK
         response.body() == 'sherlock' // <8>
     }
